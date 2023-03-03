@@ -1,0 +1,6 @@
+.devcontainer/
+.vscode/
+node_modules/
+nts/
+tester.sh
+manifest.json

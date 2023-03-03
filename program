@@ -1,0 +1,60 @@
+#!/usr/local/bin/node
+const util = require('util')
+
+const Parser = require("./Logic/Parser");
+const CLI = require("./Logic/CLI");
+const Circuit = require("./Logic/Circuit");
+
+class Program {
+  constructor() {
+    Object.assign(this, {
+      cli: new CLI(),
+      parser: new Parser(process.argv[2]),
+      circuit: new Circuit()
+    })
+  }
+
+  handleChange(line) {
+    const [comp, val] = line.split("=");
+    let err = this.circuit.changeValue(comp, val);
+    if (err) {
+      console.log("Error : ", err);
+    }
+  }
+
+  async run() {
+    let comps = this.parser.getComponents();
+    let links = this.parser.getLinks();
+    Object.keys(comps).forEach(name => {
+      this.circuit.addComponent(name, comps[name])
+    })
+    links.forEach(link => this.circuit.addLink(link));
+
+    let line = "";
+    await this.cli.prepare();
+    // console.log(util.inspect(this.circuit, false, null, true))
+    this.circuit.simulate();
+    while (line = await this.cli.getline()) {
+      // console.log("Received Line : [" + line + "]");
+      switch (line) {
+        case ("quit"):
+          this.cli.close();
+          break;
+        case ("display"):
+          this.circuit.display();
+          break;
+          case ("simulate"):
+            this.circuit.simulate();
+            break;
+          case ("dump"):
+            this.circuit.dump();
+            break;
+        default:
+          this.handleChange(line);
+      }
+    }
+  }
+}
+
+const program = new Program();
+program.run();
