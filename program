@@ -43,12 +43,12 @@ class Program {
         case ("display"):
           this.circuit.display();
           break;
-          case ("simulate"):
-            this.circuit.simulate();
-            break;
-          case ("dump"):
-            this.circuit.dump();
-            break;
+        case ("simulate"):
+          this.circuit.simulate();
+          break;
+        case ("dump"):
+          this.circuit.dump();
+          break;
         default:
           this.handleChange(line);
       }
@@ -58,3 +58,4 @@ class Program {
 
 const program = new Program();
 program.run();
+

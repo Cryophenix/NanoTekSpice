@@ -21,7 +21,7 @@ module.exports = class XorGate extends Component {
       let v1 = this.pins[1].compute();
       let v2 = this.pins[2].compute();
       if ((v1 === undefined || v2 === undefined))
-        this.pins[3].state = "U";
+        this.pins[3].state = undefined;
       else
         this.pins[3].state = v1 ^ v2;
     }

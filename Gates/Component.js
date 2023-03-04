@@ -12,8 +12,9 @@ module.exports = class Component {
   }
 
   setLink(pin, other, otherpin) {
+    // console.log(`New link on comp ${this.name} on pin ${pin} to comp ${other.name} on pin ${otherpin}`);
     if (!Object.keys(this.pins).includes(pin) || !Object.keys(other.pins).includes(otherpin))
-      throw new Error("Bad pin");
+      throw new Error(`Bad pin (${pin}, ${other.name}, ${otherpin})`);
     if (this.pins[pin] !== null)
       return;
     this.pins[pin] = new Pin(pin, other, otherpin);
@@ -22,6 +23,7 @@ module.exports = class Component {
 
   validatePin(pin) {
     if (!Object.keys(this.pins).includes(pin)) {
+      console.log(Object.keys(this.pins), pin)
       throw new Error("Invalid pin accessed, logic error");
     }
   }

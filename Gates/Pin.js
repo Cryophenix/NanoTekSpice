@@ -4,6 +4,7 @@ module.exports = class Pin {
   }
 
   compute() {
+    //console.log(`Computing ${this.otherpin} of ${this.other.name}`);
     return this.other.compute(this.otherpin);
   }
 }

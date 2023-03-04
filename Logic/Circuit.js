@@ -1,3 +1,5 @@
+const util = require("util");
+
 module.exports = class Circuit {
   constructor() {
     this.comps = [];
@@ -54,6 +56,6 @@ module.exports = class Circuit {
   }
 
   dump() {
-    console.log(util.inspect(this, false, null, true))
+    console.log(util.inspect(this, false, null, false))
   }
 }

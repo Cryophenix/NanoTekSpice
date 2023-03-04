@@ -16,7 +16,7 @@ module.exports = class NotGate extends Component {
     if (pin == 2) {
       let v1 = this.pins[1].compute();
       if (v1 === undefined)
-        this.pins[2].state = "U";
+        this.pins[2].state = undefined;
       else
         this.pins[2].state = v1 == 1 ? 0 : 1;
     }
