@@ -3,15 +3,15 @@
 **  I didn't find any workaround to avoid circular dependency ;(
 */
 
-const Input = require("../Gates/Input");
-const Output = require("../Gates/Output");
-const AndGate = require("../Gates/AndGate");
-const OrGate = require("../Gates/OrGate");
-const XorGate = require("../Gates/XorGate");
-const NotGate = require("../Gates/NotGate");
-const Clock = require("../Gates/Clock");
-const TrueComponent = require("../Gates/TrueComponent");
-const FalseComponent = require("../Gates/FalseComponent");
+const Input = require("../Components/Base/Input");
+const Output = require("../Components/Base/Output");
+const AndGate = require("../Components/Base/AndGate");
+const OrGate = require("../Components/Base/OrGate");
+const XorGate = require("../Components/Base/XorGate");
+const NotGate = require("../Components/Base/NotGate");
+const Clock = require("../Components/Base/Clock");
+const TrueComponent = require("../Components/Base/TrueComponent");
+const FalseComponent = require("../Components/Base/FalseComponent");
 
 module.exports = class BaseFactory {
   static make = {
